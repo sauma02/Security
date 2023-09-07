@@ -30,5 +30,27 @@ public final class Lavadora extends Electrodomestico {
     public void setCarga(double carga) {
         this.carga = carga;
     }
-    
+   
+  public Electrodomestico crearLavadora(){
+      super.crearElectrodomestico();
+      Lavadora l1 = new Lavadora(10, super.precio, super.color, super.consumoE, super.peso);
+      System.out.println("El color es: "+l1.comprobarColor(super.color));
+      System.out.println("El tipo de Energia es: "+l1.comprobarConsumoEnergetico(consumoE));
+      l1.comprobarConsumoEnergetico(consumoE);
+      return l1;
+  }
+    @Override
+  public Double precioFinal(){
+      super.precioFinal();
+      if(this.getCarga()> 30){
+          this.precio = this.precio + 500;
+          return this.precio;
+      }else{
+          return this.precio;
+      }
+  }
+       @Override
+    public String toString() {
+        return "Lavadora{Carga= "+carga+" Precio= "+precio+" Color= "+color+" ConsumoE= "+consumoE+" Peso= "+peso;
+    }
 }
