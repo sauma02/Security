@@ -4,6 +4,8 @@
  */
 package com.mycompany.herencia.ejercicios.entidades;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Admin
@@ -31,19 +33,23 @@ public final class Lavadora extends Electrodomestico {
         this.carga = carga;
     }
    
-  public Electrodomestico crearLavadora(){
-      super.crearElectrodomestico();
-      Lavadora l1 = new Lavadora(10, super.precio, super.color, super.consumoE, super.peso);
-      System.out.println("El color es: "+l1.comprobarColor(super.color));
-      System.out.println("El tipo de Energia es: "+l1.comprobarConsumoEnergetico(consumoE));
-      l1.comprobarConsumoEnergetico(consumoE);
+  public Lavadora crearLavadora(){
+      Electrodomestico e1 = new Electrodomestico().crearElectrodomestico();
+      Scanner leer = new Scanner(System.in);
+      System.out.println("Ingrese la carga de la lavadora en kg");
+      Double carga = leer.nextDouble();
+      Lavadora l1 = new Lavadora(carga, e1.getPrecio(), e1.getColor(), e1.consumoE, e1.peso);
+      System.out.println("El color es: "+l1.comprobarColor(e1.color));
+      System.out.println("El tipo de Energia es: "+l1.comprobarConsumoEnergetico(e1.getConsumoE()));
+      
       return l1;
   }
     @Override
   public Double precioFinal(){
       super.precioFinal();
-      if(this.getCarga()> 30){
+      if(this.carga> 30){
           this.precio = this.precio + 500;
+          this.setPrecio(this.precio);
           return this.precio;
       }else{
           return this.precio;
