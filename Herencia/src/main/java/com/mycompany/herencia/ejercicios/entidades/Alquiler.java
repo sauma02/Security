@@ -6,6 +6,7 @@ package com.mycompany.herencia.ejercicios.entidades;
 
 import com.mycompany.herencia.interfaces.Alquilar;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -81,17 +82,17 @@ public class Alquiler{
         this.barco = barco;
     }
     
-   public Alquiler crearAlquiler(){
+   public Alquiler crearAlquiler() throws ParseException{
        Scanner leer = new Scanner(System.in);
        System.out.println("Ingrese su nombre");
        String nombre = leer.next();
        System.out.println("Ingrese su numero de identificacion");
        String id = leer.next();
-       System.out.println("Ingrese la fecha del alquiler (d/mm/y)");
+       System.out.println("Ingrese la fecha del alquiler (ddmmyyyy)");
        String fecha1 = leer.next();
-       DateFormat df = new SimpleDateFormat("dMMMMyyyy");
+       DateFormat df = new SimpleDateFormat("ddMMyyyy");
        Date fechaA = df.parse(fecha1);
-       System.out.println("Ingrese la fecha de devolucion (d/mm/y)");
+       System.out.println("Ingrese la fecha de devolucion (ddmmyyyy)");
        String fecha2 = leer.next();
        Date fechaD = df.parse(fecha2);
        System.out.println("Ingrese el numero de la posicion donde estara el barco");

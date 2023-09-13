@@ -4,10 +4,12 @@
  */
 package com.mycompany.herencia.interfaces;
 
+import com.mycompany.herencia.ejercicios.entidades.Barco;
+
 /**
  *
  * @author Admin
  */
 public interface Alquilar {
-    
+    public Double calcularAlquiler(Barco b1);
 }

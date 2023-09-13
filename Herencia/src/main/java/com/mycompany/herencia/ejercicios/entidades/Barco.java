@@ -5,6 +5,7 @@
 package com.mycompany.herencia.ejercicios.entidades;
 
 import com.mycompany.herencia.interfaces.Alquilar;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -40,11 +41,59 @@ public class Barco extends Alquiler implements Alquilar {
         this.cam = cam;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public Double getEslora() {
+        return eslora;
+    }
+
+    public void setEslora(Double eslora) {
+        this.eslora = eslora;
+    }
+
+    public Double getPotCV() {
+        return potCV;
+    }
+
+    public void setPotCV(Double potCV) {
+        this.potCV = potCV;
+    }
+
+    public Integer getAnioF() {
+        return anioF;
+    }
+
+    public void setAnioF(Integer anioF) {
+        this.anioF = anioF;
+    }
+
+    public Integer getMastiles() {
+        return mastiles;
+    }
+
+    public void setMastiles(Integer mastiles) {
+        this.mastiles = mastiles;
+    }
+
+    public Integer getCam() {
+        return cam;
+    }
+
+    public void setCam(Integer cam) {
+        this.cam = cam;
+    }
+
   
 
   
     
-    public Barco crearBarco(){
+    public Barco crearBarco() throws ParseException{
         Alquiler e1 = new Alquiler().crearAlquiler();
         Scanner leer = new Scanner(System.in);
         System.out.println("Ingrese la matricula del Barco");
@@ -91,9 +140,29 @@ public class Barco extends Alquiler implements Alquilar {
     public Double calcularAlquiler(Barco b1) {
         switch (b1.getBarco()) {
             case "yate":
-                Integer fecha1 = Integer.valueOf(b1.getFechaA());
-                
-                break;
+                int mil = 86400000;
+                int dias = (int) (((b1.getFechaA().getTime()-b1.getFechaD().getTime()))/mil);
+                Double modulo = (b1.getEslora()*10) * dias;
+                Double alqui = modulo + b1.getCam() + b1.getPotCV();
+                return alqui;
+            case "motor":
+                mil = 86400000;
+                dias = (int) (((b1.getFechaA().getTime()-b1.getFechaD().getTime()))/mil);
+                modulo = (b1.getEslora()*10)  * dias;
+                alqui = modulo + b1.getPotCV();
+                return alqui;
+            case "velero":
+                mil = 86400000;
+                dias = (int) (((b1.getFechaA().getTime()-b1.getFechaD().getTime()))/mil);
+                modulo = (b1.getEslora()*10)  * dias;
+                alqui = modulo + b1.getMastiles();
+                return alqui;
+            case "otro":
+                mil = 86400000;
+                dias = (int) (((b1.getFechaA().getTime()-b1.getFechaD().getTime()))/mil);
+                 modulo = (b1.getEslora()*10)  * dias;
+                 alqui = modulo;
+                return alqui;
             default:
                 throw new AssertionError();
         }
