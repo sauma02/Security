@@ -4,12 +4,18 @@
  */
 package com.mycompany.herencia.ejercicios.entidades;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Admin
  */
 public final class EdificioDeOficinas extends Edificio {
     private Integer numOf, cantPOf, cantP;
+
+    public EdificioDeOficinas() {
+    }
+    
 
     public EdificioDeOficinas(Integer numOf, Integer cantPOf, Integer cantP) {
         this.numOf = numOf;
@@ -23,6 +29,8 @@ public final class EdificioDeOficinas extends Edificio {
         this.cantPOf = cantPOf;
         this.cantP = cantP;
     }
+
+    
 
     public Integer getNumOf() {
         return numOf;
@@ -71,6 +79,22 @@ public final class EdificioDeOficinas extends Edificio {
     public void setAlto(Double alto) {
         this.alto = alto;
     }
+       public EdificioDeOficinas crearEdificioDeOficinas(){
+        Scanner leer = new Scanner(System.in);
+        System.out.println("Ingrese el ancho, largo y alto, en este orden respectivo y en metros");
+        Double ancho = leer.nextDouble();
+        Double largo = leer.nextDouble();
+        Double alto = leer.nextDouble();
+        System.out.println("Ingrese el numero de oficinas");
+        Integer numOf = leer.nextInt();
+        System.out.println("Ingrese la cantidad de personas por oficina");
+        Integer cantPOF = leer.nextInt();
+        System.out.println("Ingrese la cantidad de personas");
+        Integer cantP = leer.nextInt();
+        EdificioDeOficinas e1 = new EdificioDeOficinas(numOf, cantPOF, cantP, ancho, largo, alto);
+        return e1;
+    }
+
     public void cantidadPersonas(EdificioDeOficinas e1){
         Integer personasP = (e1.getCantPOf()*e1.getNumOf())/e1.getCantP();
         System.out.println("Personas por piso: "+personasP);
@@ -79,14 +103,21 @@ public final class EdificioDeOficinas extends Edificio {
         
         
     }
-
     @Override
-    public Double calcularSuperficie() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String nombreEdi(){
+        String nombre = "Edificio de oficinas";
+        return nombre;
     }
 
     @Override
-    public Double calcularVolumen() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Double calcularSuperficie(Edificio e1) {
+        Double superficie = e1.getLargo() * e1.getAncho();
+        return superficie;
+    }
+
+    @Override
+    public Double calcularVolumen(Edificio e1) {
+        Double volumen = e1.getAlto() * e1.getAncho() * e1.getLargo();
+        return volumen;
     }
 }

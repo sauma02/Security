@@ -4,6 +4,8 @@
  */
 package com.mycompany.herencia.ejercicios.entidades;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Admin
@@ -43,6 +45,7 @@ public abstract class Edificio {
     public void setAlto(Double alto) {
         this.alto = alto;
     }
-    public abstract Double calcularSuperficie();
-    public abstract Double calcularVolumen();
+    public abstract String nombreEdi();
+    public abstract Double calcularSuperficie(Edificio e1);
+    public abstract Double calcularVolumen(Edificio e1);
 }
