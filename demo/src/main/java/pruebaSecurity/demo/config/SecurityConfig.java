@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import pruebaSecurity.demo.servicios.UsuarioServicio;
 
@@ -24,6 +26,10 @@ public class SecurityConfig {
     public SecurityConfig(UsuarioServicio uS) {
         this.uS = uS;
     }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -31,7 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
                                 .requestMatchers("/login/**").permitAll()
                                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                                .requestMatchers("/visitante/**").hasAnyAuthority("ADMIN", "USER")
+                                .requestMatchers("/visitante/**").hasAnyAuthority("ADMIN", "STAFF")
                                 .anyRequest().authenticated())
                 .userDetailsService(uS).build();
     }

@@ -20,25 +20,8 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-        @Bean
-        CommandLineRunner run(UsuarioRepositorio uR, RolesRepositorio rR, PasswordEncoder passwordEncoder){
-            return args ->{
-                List<Roles> listaRol = new ArrayList<>();
-                    Roles Admin = new Roles(Integer.SIZE, "ADMIN");
-                     Roles User = new Roles(Integer.SIZE, "USER");
-                    listaRol.add(Admin);
-                    listaRol.add(User);
-                    
-                    rR.save(Admin);
-                    rR.save(User);
-               
-           
-          
-        };
-        }
-        @Bean
-        public PasswordEncoder passwordEncoder(){
-            return new BCryptPasswordEncoder();
-        }
-
+        
+       
+        
+        
 }
